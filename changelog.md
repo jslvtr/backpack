@@ -13,6 +13,9 @@
 - react-native-bpk-component-button
   - Added theming support
 
+- react-native-bpk-component-banner-alert:
+  - New component `BpkBannerAlert`, see http://backpack.prod.aws.skyscnr.com/components/native/banner-alerts/
+
 **Fixed:**
 - bpk-tokens:
   - Fixed package meta data to point to correct entry file
