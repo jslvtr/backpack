@@ -5,6 +5,7 @@
 **Added:**
 - bpk-tokens:
   - iOS & Android border size tokens
+  - iOS & Android animation duration tokens
   - Android elevation tokens
   - iOS touchable highlight underlay tokens
   - iOS shadow tokens
@@ -12,6 +13,9 @@
 
 - react-native-bpk-component-button
   - Added theming support
+
+- react-native-bpk-component-animate-height:
+  - New component `BpkAnimateHeight`. See http://backpack.prod.aws.skyscnr.com/components/native/animate-height/
 
 **Fixed:**
 - bpk-tokens:
@@ -50,8 +54,16 @@
 
 **Added:**
 - react-native-bpk-theming  0.0.1 => 1.0.0
+<<<<<<< HEAD
   - New `BpkThemeProvider` and `withTheme` utilities.
 
+<<<<<<< HEAD
+=======
+=======
+ - New BpkThemeProvider utility.
+
+>>>>>>> []BPK-878b Add BPK Animate Height Component
+>>>>>>> []BPK-878b Add BPK Animate Height Component
 - react-native-bpk-component-icon 0.0.1 => 0.0.2
   - New component `BpkIcon`. See http://backpack.prod.aws.skyscnr.com/components/native/icons/
 
