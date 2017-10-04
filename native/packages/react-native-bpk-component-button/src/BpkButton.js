@@ -66,17 +66,12 @@
    return styleForElement;
  };
 
- const getThemingForElement = (elementType, theme, { type, disabled, selected }) => {
+ const getThemingForElement = (elementType, theme, { type, selected, disabled }) => {
    const themeForElement = {};
-   if (theme && styles.themeMappings[elementType]) {
+   if (theme && !selected && !disabled && styles.themeMappings[elementType]) {
      Object.keys(styles.themeMappings[elementType]).forEach((key) => {
        const values = styles.themeMappings[elementType][key];
-
-       if (disabled && theme[values.disabled]) {
-         themeForElement[key] = theme[values.disabled];
-       } else if (selected && theme[values.selected]) {
-         themeForElement[key] = theme[values.selected];
-       } else if (values[type]) {
+       if (values[type]) {
          themeForElement[key] = theme[values[type]];
        }
      });
@@ -85,16 +80,13 @@
  };
 
  const getGradientColors = (theme, { type, disabled, selected }) => {
-   let gradientColors = theme ?
-   [theme.gradientStartColor, theme.gradientEndColor] : styles.gradientColors[type];
+   let gradientColors = theme ? [theme.gradientStartColor, theme.gradientEndColor] : styles.gradientColors[type];
 
    if (selected) {
-     gradientColors = theme ?
-     [theme.selectedGradientStartColor, theme.selectedGradientEndColor] : styles.gradientColors.selected;
+     gradientColors = styles.gradientColors.selected;
    }
    if (disabled) {
-     gradientColors = theme ?
-     [theme.disabledBackgroundColor, theme.disabledBackgroundColor] : styles.gradientColors.disabled;
+     gradientColors = styles.gradientColors.disabled;
    }
    return gradientColors;
  };
@@ -132,13 +124,6 @@
    if (theme) {
      // Must provide disabled and selected states regardless of theme.
      const attributesToSupply = [
-       styles.themeMappings.text.color.disabled,
-       styles.themeMappings.text.color.selected,
-       styles.themeMappings.gradient.disabled.startColor,
-       styles.themeMappings.gradient.disabled.endColor,
-       styles.themeMappings.gradient.selected.startColor,
-       styles.themeMappings.gradient.selected.endColor,
-
        // TODO this should support multiple types in future with some logic.
        styles.themeMappings.text.color.primary,
        styles.themeMappings.gradient.primary.startColor,
@@ -208,11 +193,6 @@
      gradientStartColor: PropTypes.string.isRequired,
      gradientEndColor: PropTypes.string.isRequired,
      textColor: PropTypes.string.isRequired,
-     selectedGradientStartColor: PropTypes.string.isRequired,
-     selectedGradientEndColor: PropTypes.string.isRequired,
-     selectedTextColor: PropTypes.string.isRequired,
-     disabledBackgroundColor: PropTypes.string.isRequired,
-     disabledTextColor: PropTypes.string.isRequired,
    }),
  };
 

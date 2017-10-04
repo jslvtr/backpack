@@ -101,18 +101,10 @@ ArrowImage.defaultProps = {
   type: '',
 };
 
-// TODO nicer colors.
 const themeAttributes = {
-  gradientStartColor: '#CE93D8',
-  gradientEndColor: '#AB47BC',
-  textColor: 'rgba(255, 255, 255, 0.8)',
-
-  selectedGradientStartColor: '#FF5722',
-  selectedGradientEndColor: '#E64A19',
-  selectedTextColor: '#FFEB3B',
-
-  disabledBackgroundColor: '#B2FF59',
-  disabledTextColor: '#b71c1c',
+  gradientStartColor: '#fce134',
+  gradientEndColor: '#f8c42d',
+  textColor: '#2d244c',
 };
 
 const generateButtonStoryForType = (type, theme = null) => {

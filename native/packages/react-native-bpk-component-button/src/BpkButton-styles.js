@@ -172,22 +172,12 @@ const themeMappings = {
   text: {
     color: {
       primary: 'textColor',
-      disabled: 'disabledTextColor',
-      selected: 'selectedTextColor',
     },
   },
   gradient: {
     primary: {
       startColor: 'gradientStartColor',
       endColor: 'gradientEndColor',
-    },
-    disabled: {
-      startColor: 'disabledBackgroundColor',
-      endColor: 'disabledBackgroundColor',
-    },
-    selected: {
-      startColor: 'selectedGradientStartColor',
-      endColor: 'selectedGradientEndColor',
     },
   },
 };
