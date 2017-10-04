@@ -30,9 +30,10 @@ import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react-native';
 import { action } from '@storybook/addon-actions';
 
+import BpkThemeProvider from 'react-native-bpk-theming';
 import BpkText from 'react-native-bpk-component-text';
 
-import BpkButton, { BUTTON_TYPES } from './src/BpkButton';
+import BpkButton, { BpkButtonThemed, BUTTON_TYPES } from './src/BpkButton';
 
 import ArrowImageSrc from './long-arrow-right-3x.png';
 
@@ -100,92 +101,109 @@ ArrowImage.defaultProps = {
   type: '',
 };
 
-const generateButtonStoryForType = type => (
-  <View key={type}>
-    <BpkText textStyle="sm" style={styles.bottomMargin}>Default</BpkText>
-    <View style={styles.btnContainer}>
-      <BpkButton
-        type={type}
-        title="Button"
-        onPress={action(`${type} pressed`)}
-        style={styles.buttonStyles}
-      />
-      <BpkButton
-        type={type}
-        selected
-        title="Selected"
-        onPress={action(`${type} selected pressed`)}
-        style={styles.buttonStyles}
-      />
-      <BpkButton
-        type={type}
-        disabled
-        title="Disabled"
-        onPress={action(`${type} disabled pressed, somehow`)}
-        style={styles.buttonStyles}
-      />
-      <BpkButton
-        type={type}
-        title="With icon"
-        icon={<ArrowImage type={type} />}
-        onPress={action(`${type} with icon clicked`)}
-        style={styles.buttonStyles}
-      />
-      <BpkButton
-        type={type}
-        title="Icon only"
-        icon={<ArrowImage type={type} />}
-        iconOnly
-        onPress={action(`${type} icon only button clicked`)}
-        style={styles.buttonStyles}
-      />
-    </View>
+// TODO nicer colors.
+const themeAttributes = {
+  gradientStartColor: '#CE93D8',
+  gradientEndColor: '#AB47BC',
+  textColor: 'rgba(255, 255, 255, 0.8)',
 
-    <BpkText textStyle="sm" style={styles.bottomMargin}>Large</BpkText>
-    <View style={styles.btnContainer}>
-      <BpkButton
-        large
-        type={type}
-        title="Button"
-        onPress={action(`${type} pressed`)}
-        style={styles.buttonStyles}
-      />
-      <BpkButton
-        large
-        type={type}
-        selected
-        title="Selected"
-        onPress={action(`${type} selected pressed`)}
-        style={styles.buttonStyles}
-      />
-      <BpkButton
-        large
-        type={type}
-        disabled
-        title="Disabled"
-        onPress={action(`${type} disabled pressed, somehow`)}
-        style={styles.buttonStyles}
-      />
-      <BpkButton
-        large
-        type={type}
-        title="With icon"
-        icon={<ArrowImage large type={type} />}
-        onPress={action(`${type} with icon clicked`)}
-        style={styles.buttonStyles}
-      />
-      <BpkButton
-        large
-        type={type}
-        title="Icon only"
-        icon={<ArrowImage large type={type} />}
-        iconOnly
-        onPress={action(`${type} icon only button clicked`)}
-        style={styles.buttonStyles}
-      />
+  selectedGradientStartColor: '#FF5722',
+  selectedGradientEndColor: '#E64A19',
+  selectedTextColor: '#FFEB3B',
+
+  disabledBackgroundColor: '#B2FF59',
+  disabledTextColor: '#b71c1c',
+};
+
+const generateButtonStoryForType = (type, theme = null) => {
+  const StoryButton = theme ? BpkButtonThemed : BpkButton;
+  return (
+    <View key={type}>
+      <BpkText textStyle="sm" style={styles.bottomMargin}>Default</BpkText>
+      <View style={styles.btnContainer}>
+        <StoryButton
+          type={type}
+          title="Button"
+          onPress={action(`${type} pressed`)}
+          style={styles.buttonStyles}
+        />
+        <StoryButton
+          type={type}
+          selected
+          title="Selected"
+          onPress={action(`${type} selected pressed`)}
+          style={styles.buttonStyles}
+        />
+        <StoryButton
+          type={type}
+          disabled
+          title="Disabled"
+          onPress={action(`${type} disabled pressed, somehow`)}
+          style={styles.buttonStyles}
+        />
+        <StoryButton
+          type={type}
+          title="With icon"
+          icon={<ArrowImage type={type} />}
+          onPress={action(`${type} with icon clicked`)}
+          style={styles.buttonStyles}
+        />
+        <StoryButton
+          type={type}
+          title="Icon only"
+          icon={<ArrowImage type={type} />}
+          iconOnly
+          onPress={action(`${type} icon only button clicked`)}
+          style={styles.buttonStyles}
+        />
+      </View>
+
+      <BpkText textStyle="sm" style={styles.bottomMargin}>Large</BpkText>
+      <View style={styles.btnContainer}>
+        <StoryButton
+          large
+          type={type}
+          title="Button"
+          onPress={action(`${type} pressed`)}
+          style={styles.buttonStyles}
+        />
+        <StoryButton
+          large
+          type={type}
+          selected
+          title="Selected"
+          onPress={action(`${type} selected pressed`)}
+          style={styles.buttonStyles}
+        />
+        <StoryButton
+          large
+          type={type}
+          disabled
+          title="Disabled"
+          onPress={action(`${type} disabled pressed, somehow`)}
+          style={styles.buttonStyles}
+        />
+        <StoryButton
+          large
+          type={type}
+          title="With icon"
+          icon={<ArrowImage large type={type} />}
+          onPress={action(`${type} with icon clicked`)}
+          style={styles.buttonStyles}
+        />
+        <StoryButton
+          large
+          type={type}
+          title="Icon only"
+          icon={<ArrowImage large type={type} />}
+          iconOnly
+          onPress={action(`${type} icon only button clicked`)}
+          style={styles.buttonStyles}
+        />
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 const allButtonStories = BUTTON_TYPES.map(generateButtonStoryForType);
 
@@ -214,6 +232,14 @@ storiesOf('BpkButton', module)
     <View>
       {generateButtonStoryForType('featured')}
     </View>
+  ))
+  .add('docs:withTheme', () => (
+    <BpkThemeProvider theme={themeAttributes}>
+      <ScrollView>
+        <BpkText textStyle="xxl">Primary</BpkText>
+        {generateButtonStoryForType('primary', themeAttributes)}
+      </ScrollView>
+    </BpkThemeProvider>
   ))
   .add('All Button Types', () => (
     <ScrollView>

@@ -23,7 +23,9 @@
  import React from 'react';
  import PropTypes from 'prop-types';
  import LinearGradient from 'react-native-linear-gradient';
+ import xor from 'lodash/xor';
 
+ import { withTheme } from 'react-native-bpk-theming';
  import BpkText from 'react-native-bpk-component-text';
 
  import styles from './BpkButton-styles';
@@ -64,13 +66,35 @@
    return styleForElement;
  };
 
- const getGradientColors = ({ type, disabled, selected }) => {
-   let gradientColors = styles.gradientColors[type];
+ const getThemingForElement = (elementType, theme, { type, disabled, selected }) => {
+   const themeForElement = {};
+   if (theme && styles.themeMappings[elementType]) {
+     Object.keys(styles.themeMappings[elementType]).forEach((key) => {
+       const values = styles.themeMappings[elementType][key];
+
+       if (disabled && theme[values.disabled]) {
+         themeForElement[key] = theme[values.disabled];
+       } else if (selected && theme[values.selected]) {
+         themeForElement[key] = theme[values.selected];
+       } else if (values[type]) {
+         themeForElement[key] = theme[values[type]];
+       }
+     });
+   }
+   return themeForElement;
+ };
+
+ const getGradientColors = (theme, { type, disabled, selected }) => {
+   let gradientColors = theme ?
+   [theme.gradientStartColor, theme.gradientEndColor] : styles.gradientColors[type];
+
    if (selected) {
-     gradientColors = styles.gradientColors.selected;
+     gradientColors = theme ?
+     [theme.selectedGradientStartColor, theme.selectedGradientEndColor] : styles.gradientColors.selected;
    }
    if (disabled) {
-     gradientColors = styles.gradientColors.disabled;
+     gradientColors = theme ?
+     [theme.disabledBackgroundColor, theme.disabledBackgroundColor] : styles.gradientColors.disabled;
    }
    return gradientColors;
  };
@@ -97,9 +121,36 @@
      style,
      ...rest
    } = props;
+   let theme = props.theme;
 
+   // Validate the button type.
    if (!BUTTON_TYPES.includes(type)) {
      throw new Error(`"${type}" is not a valid button type. Valid types are ${BUTTON_TYPES.join(', ')}`);
+   }
+
+   // Validate that correct theming attributes have been provided.
+   if (theme) {
+     // Must provide disabled and selected states regardless of theme.
+     const attributesToSupply = [
+       styles.themeMappings.text.color.disabled,
+       styles.themeMappings.text.color.selected,
+       styles.themeMappings.gradient.disabled.startColor,
+       styles.themeMappings.gradient.disabled.endColor,
+       styles.themeMappings.gradient.selected.startColor,
+       styles.themeMappings.gradient.selected.endColor,
+
+       // TODO this should support multiple types in future with some logic.
+       styles.themeMappings.text.color.primary,
+       styles.themeMappings.gradient.primary.startColor,
+       styles.themeMappings.gradient.primary.endColor,
+     ];
+
+     // If all attributes were not supplied, turn off theming.
+     // TODO allow all types to be themed.
+     const allAttributesSupplied = xor(attributesToSupply, Object.keys(theme)).length === 0;
+     if (!allAttributesSupplied || type !== 'primary') {
+       theme = null;
+     }
    }
 
    const accessibilityTraits = ['button'];
@@ -110,7 +161,10 @@
    // Note that TouchableHighlight isn't on Android, so TouchableFeedback
    // will need to be used to support it.
    return (
-     <LinearGradient style={[getStyleForElement('container', props), style]} colors={getGradientColors(props)}>
+     <LinearGradient
+       colors={getGradientColors(theme, props)}
+       style={[getStyleForElement('container', props), style]}
+     >
        <TouchableHighlight
          style={getStyleForElement('button', props)}
          disabled={disabled}
@@ -127,7 +181,7 @@
              <BpkText
                textStyle={large ? 'lg' : 'sm'}
                emphasize
-               style={getStyleForElement('text', props)}
+               style={[getStyleForElement('text', props), getThemingForElement('text', theme, props)]}
              >
                {title}
              </BpkText>
@@ -150,6 +204,16 @@
    selected: PropTypes.bool,
    accessibilityLabel: PropTypes.string,
    style: View.propTypes.style,
+   theme: PropTypes.shape({
+     gradientStartColor: PropTypes.string.isRequired,
+     gradientEndColor: PropTypes.string.isRequired,
+     textColor: PropTypes.string.isRequired,
+     selectedGradientStartColor: PropTypes.string.isRequired,
+     selectedGradientEndColor: PropTypes.string.isRequired,
+     selectedTextColor: PropTypes.string.isRequired,
+     disabledBackgroundColor: PropTypes.string.isRequired,
+     disabledTextColor: PropTypes.string.isRequired,
+   }),
  };
 
  BpkButton.defaultProps = {
@@ -161,7 +225,13 @@
    selected: false,
    accessibilityLabel: null,
    style: null,
+   theme: null,
  };
 
+ const BpkButtonThemed = withTheme(BpkButton);
+
  export default BpkButton;
- export { BUTTON_TYPES };
+ export {
+   BUTTON_TYPES,
+   BpkButtonThemed,
+  };

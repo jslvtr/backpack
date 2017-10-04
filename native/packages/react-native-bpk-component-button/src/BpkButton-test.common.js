@@ -20,7 +20,9 @@ import { Image } from 'react-native';
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import BpkButton, { BUTTON_TYPES } from './BpkButton';
+import BpkThemeProvider from 'react-native-bpk-theming';
+
+import BpkButton, { BpkButtonThemed, BUTTON_TYPES } from './BpkButton';
 
 const onPressFn = jest.fn();
 const commonTests = () => {
@@ -131,6 +133,30 @@ const commonTests = () => {
           onPress={onPressFn}
         />,
       )).toThrow('"silly" is not a valid button type. Valid types are primary, featured, secondary, destructive');
+    });
+  });
+
+  describe('BpkButtonThemed', () => {
+    const themeAttributes = {
+      gradientStartColor: '#CE93D8',
+      gradientEndColor: '#AB47BC',
+      textColor: 'rgba(255, 255, 255, 0.8)',
+
+      selectedGradientStartColor: '#FF5722',
+      selectedGradientEndColor: '#E64A19',
+      selectedTextColor: '#FFEB3B',
+
+      disabledBackgroundColor: '#B2FF59',
+      disabledTextColor: '#b71c1c',
+    };
+
+    it('should render correctly', () => {
+      const tree = renderer.create(
+        <BpkThemeProvider theme={themeAttributes}>
+          <BpkButtonThemed title="Lorem ipsum" type="primary" onPress={onPressFn} />
+        </BpkThemeProvider>,
+      ).toJSON();
+      expect(tree).toMatchSnapshot();
     });
   });
 };
