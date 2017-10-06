@@ -46,12 +46,11 @@ class BpkAnimateHeight extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.expanded !== this.state.expanded) {
       this.state.expanded = nextProps.expanded;
-
       this.resize();
     }
   }
 
-  setExpandedHeight = (event, expandedImmediately) => {
+  setExpandedHeight(event, expandedImmediately) {
     // if (this.state.expandedHeightSet) return;
     const { height } = event.nativeEvent.layout;
     this.setState({
@@ -61,9 +60,9 @@ class BpkAnimateHeight extends React.Component {
       heightSet: true,
       expandedHeight: height,
     });
-  };
+  }
 
-  resize=() => {
+  resize() {
     const finalValue = this.state.expanded ? this.state.expandedHeight : this.state.collapsedHeight;
 
     Animated.timing(
@@ -101,16 +100,12 @@ class BpkAnimateHeight extends React.Component {
 
 BpkAnimateHeight.propTypes = {
   expanded: PropTypes.bool.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  children: PropTypes.node.isRequired,
   style: View.propTypes.style,
 };
 
 BpkAnimateHeight.defaultProps = {
   style: null,
-  children: null,
 };
 
 export default BpkAnimateHeight;

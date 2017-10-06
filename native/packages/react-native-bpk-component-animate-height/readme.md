@@ -14,6 +14,7 @@ npm install react-native-bpk-component-animate-height --save-dev
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import BpkAnimateHeight from 'react-native-bpk-component-animate-height';
+import BpkButton from 'react-native-bpk-component-button';
 import BpkText from 'react-native-bpk-component-text';
 import * as TOKENS from 'bpk-tokens/tokens/ios/base.react.native.es6';
 
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: TOKENS.spacingBase,
-  }
+  },
   animateHeight: {
     marginBottom: TOKENS.spacingBase,
   }
@@ -38,26 +39,28 @@ export default class App extends Component {
   }
 
   render() {
-    <View style={styles.container}>
-      <BpkAnimateHeight
-        expanded={this.state.expanded}
-        style={styles.animateHeight}
-      >
-        <BpkText>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-          commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus
-          et magnis dis parturient montes, nascetur ridiculus mus.
-        </BpkText>
-      </BpkAnimateHeight>
-      <BpkButton title="Toggle" onPress={this.onToggle} />
-    </View>
+    return (
+      <View style={styles.container}>
+        <BpkAnimateHeight
+          expanded={this.state.expanded}
+          style={styles.animateHeight}
+        >
+          <BpkText>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+            commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus
+            et magnis dis parturient montes, nascetur ridiculus mus.
+          </BpkText>
+        </BpkAnimateHeight>
+        <BpkButton title="Toggle" onPress={this.onToggle} />
+      </View>
+    );
   }
 }
 ```
 
 ## Props
 
-| Property  | PropType                   | Required | Default Value |
-| --------- | -------------------------- | -------- | ------------- |
-| expanded  | bool                       | Yes      | -             |
-| children  | oneOf(Node, arrayOf(Node)  | No       | null          |
+| Property  | PropType  | Required | Default Value |
+| --------- | --------- | -------- | ------------- |
+| expanded  | bool      | Yes      | -             |
+| children  | Node      | Yes      | -             |

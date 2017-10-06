@@ -88,7 +88,50 @@ exports[`iOS BpkAnimateHeight should render correctly with n children 1`] = `
 >
   <View
     onLayout={[Function]}
-  />
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "rgb(82, 76, 97)",
+            "fontFamily": "System",
+            "fontSize": 15,
+            "fontWeight": "400",
+            "lineHeight": 20,
+          },
+          false,
+          Object {},
+        ]
+      }
+    >
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "rgb(82, 76, 97)",
+            "fontFamily": "System",
+            "fontSize": 15,
+            "fontWeight": "400",
+            "lineHeight": 20,
+          },
+          false,
+          Object {},
+        ]
+      }
+    >
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+    </Text>
+  </View>
 </View>
 `;
 

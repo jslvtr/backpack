@@ -55,7 +55,11 @@ const commonTests = () => {
       const tree = renderer.create(
         <BpkAnimateHeight
           expanded
-        />).toJSON();
+        >
+          {animateHeightContent}
+          {animateHeightContent}
+        </BpkAnimateHeight>,
+        ).toJSON();
       expect(tree).toMatchSnapshot();
     });
 
