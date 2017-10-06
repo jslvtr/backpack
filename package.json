@@ -42,6 +42,7 @@
     "ios": "(cd ./native && npm run ios)",
     "android": "(cd ./native && npm run android)",
     "check-owners": "npm whoami && grep -E $(npm whoami) NPM_OWNERS && node scripts/npm/check-owners.js",
+    "check-bpk-dependencies": "node scripts/npm/check-bpk-dependencies.js",
     "publish": "npm run check-owners && npm run build && git pull --rebase && npm run test && lerna publish",
     "danger": "danger"
   },
