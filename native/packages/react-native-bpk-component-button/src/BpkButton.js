@@ -208,10 +208,7 @@
    theme: null,
  };
 
- const BpkButtonThemed = withTheme(BpkButton);
-
- export default BpkButton;
+ export default withTheme(BpkButton);
  export {
    BUTTON_TYPES,
-   BpkButtonThemed,
   };

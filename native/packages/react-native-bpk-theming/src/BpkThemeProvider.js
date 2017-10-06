@@ -16,11 +16,70 @@
  * limitations under the License.
  */
 
- import { ThemeProvider, withTheme } from 'theming';
+ import React from 'react';
+ import PropTypes from 'prop-types';
+ import { ThemeProvider } from 'theming';
+
+ // This is the same as https://github.com/iamstarkov/theming/blob/master/src/create-theme-listener.js
+ // but returns null instead of an error when context[CHANNEL] is undefined.
+ const createThemeListener = () => {
+   const CHANNEL = '__THEMING__';
+   const contextTypes = {
+     [CHANNEL]: PropTypes.object,
+   };
+
+   function initial(context) {
+     return context[CHANNEL] ? context[CHANNEL].getState() : null;
+   }
+
+   function subscribe(context, cb) {
+     return context[CHANNEL] ? context[CHANNEL].subscribe(cb) : null;
+   }
+
+   return {
+     contextTypes,
+     initial,
+     subscribe,
+   };
+ };
+
+ // This is the same as https://github.com/iamstarkov/theming/blob/master/src/create-with-theme.js
+ // but using the custom themeListener from above.
+ const createWithTheme = () => {
+   const themeListener = createThemeListener();
+   const getDisplayName = Component => (
+     Component.displayName || Component.name || 'Component'
+   );
+   return Component => (
+     class WithTheme extends React.Component {
+       static displayName = `WithTheme(${getDisplayName(Component)})`;
+       static contextTypes = themeListener.contextTypes;
+
+       constructor(props, context) {
+         super(props, context);
+         this.state = { theme: themeListener.initial(context) };
+         this.setTheme = theme => this.setState({ theme });
+       }
+       componentDidMount() {
+         this.unsubscribe = themeListener.subscribe(this.context, this.setTheme);
+       }
+       componentWillUnmount() {
+         if (typeof this.unsubscribe === 'function') {
+           this.unsubscribe();
+         }
+       }
+       render() {
+         const { theme } = this.state;
+         return <Component theme={theme} {...this.props} />;
+       }
+     }
+   );
+ };
 
  const BpkThemeProvider = ThemeProvider;
 
  export default BpkThemeProvider;
+ const withTheme = createWithTheme();
  export {
    withTheme,
  };
