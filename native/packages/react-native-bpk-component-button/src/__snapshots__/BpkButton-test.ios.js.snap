@@ -1660,8 +1660,8 @@ exports[`iOS BpkButtonThemed should render correctly 1`] = `
 <BVLinearGradient
   colors={
     Array [
-      4278245237,
-      4278238568,
+      4278222848,
+      4278190335,
     ]
   }
   end={undefined}
@@ -1758,7 +1758,9 @@ exports[`iOS BpkButtonThemed should render correctly 1`] = `
                   "color": "rgb(255, 255, 255)",
                 },
               ],
-              Object {},
+              Object {
+                "color": "red",
+              },
             ],
           ]
         }

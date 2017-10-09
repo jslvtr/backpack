@@ -1660,8 +1660,8 @@ exports[`Android BpkButtonThemed should render correctly 1`] = `
 <BVLinearGradient
   colors={
     Array [
-      -16722059,
-      -16728728,
+      -16744448,
+      -16776961,
     ]
   }
   end={undefined}
@@ -1758,7 +1758,9 @@ exports[`Android BpkButtonThemed should render correctly 1`] = `
                   "color": "rgb(255, 255, 255)",
                 },
               ],
-              Object {},
+              Object {
+                "color": "red",
+              },
             ],
           ]
         }

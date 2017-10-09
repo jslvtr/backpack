@@ -165,8 +165,13 @@ const commonTests = () => {
 
   describe('BpkButtonThemed', () => {
     it('should render correctly', () => {
+      const theme = {
+        buttonPrimaryTextColor: 'red',
+        buttonPrimaryGradientStartColor: 'green',
+        buttonPrimaryGradientEndColor: 'blue',
+      };
       const tree = renderer.create(
-        <BpkThemeProvider theme={{}}>
+        <BpkThemeProvider theme={theme}>
           <BpkButton title="Lorem ipsum" type="primary" onPress={onPressFn} />
         </BpkThemeProvider>,
       ).toJSON();
