@@ -126,13 +126,6 @@ const commonTests = () => {
       }, 'icon', 'BpkButton').toString()).toEqual('Error: Invalid prop `icon` supplied to `BpkButton`. When `iconOnly` is enabled, `icon` must be supplied.'); // eslint-disable-line max-len
     });
 
-    it('should reject theme property when button type is not themeable', () => {
-      expect(propTypes.theme({
-        type: 'featured',
-        theme: {},
-      }, 'theme', 'BpkButton').toString()).toEqual('Error: Invalid prop `theme` supplied to `BpkButton`. `type` is `featured`, but themeable types are `primary, secondary`.'); // eslint-disable-line max-len
-    });
-
     it('should reject theme property when some theme attributes are omitted', () => { // eslint-disable-line max-len
       expect(propTypes.theme({
         type: 'primary',
@@ -140,7 +133,7 @@ const commonTests = () => {
       }, 'theme', 'BpkButton').toString()).toEqual('Error: Invalid prop `theme` supplied to `BpkButton`. For buttons of type `primary`, the `theme` prop must include `buttonPrimaryTextColor, buttonPrimaryGradientStartColor, buttonPrimaryGradientEndColor`'); // eslint-disable-line max-len
     });
 
-    it('should accept theme property when type is themeable and correct attributes are supplied', () => { // eslint-disable-line max-len
+    it('should accept theme property when correct attributes are supplied', () => { // eslint-disable-line max-len
       expect(propTypes.theme({
         type: 'primary',
         theme: {

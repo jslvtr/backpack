@@ -129,9 +129,6 @@
    if (!theme) {
      return false;
    }
-   if (!isTypeThemeable(type)) {
-     return new Error(`Invalid prop \`${propName}\` supplied to \`${componentName}\`. \`type\` is \`${type}\`, but themeable types are \`${THEMEABLE_TYPES.join(', ')}\`.`); // eslint-disable-line max-len
-   }
    if (!themeAttributesSupplied(type, theme)) {
      return new Error(`Invalid prop \`${propName}\` supplied to \`${componentName}\`. For buttons of type \`${type}\`, the \`theme\` prop must include \`${REQUIRED_THEME_ATTRIBUTES[type].join(', ')}\``); // eslint-disable-line max-len
    }
