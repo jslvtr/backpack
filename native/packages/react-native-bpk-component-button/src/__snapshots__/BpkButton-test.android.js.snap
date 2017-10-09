@@ -1119,9 +1119,9 @@ exports[`Android BpkButton should support the "icon" and "large" property 1`] = 
             Object {
               "color": "rgb(82, 76, 97)",
               "fontFamily": "sans-serif",
-              "fontSize": 16,
+              "fontSize": 20,
               "fontWeight": undefined,
-              "lineHeight": 24,
+              "lineHeight": 28,
             },
             Object {
               "fontWeight": "600",
@@ -1344,9 +1344,9 @@ exports[`Android BpkButton should support the "large" and secondary property 1`]
             Object {
               "color": "rgb(82, 76, 97)",
               "fontFamily": "sans-serif",
-              "fontSize": 16,
+              "fontSize": 20,
               "fontWeight": undefined,
-              "lineHeight": 24,
+              "lineHeight": 28,
             },
             Object {
               "fontWeight": "600",
@@ -1468,9 +1468,9 @@ exports[`Android BpkButton should support the "large" property 1`] = `
             Object {
               "color": "rgb(82, 76, 97)",
               "fontFamily": "sans-serif",
-              "fontSize": 16,
+              "fontSize": 20,
               "fontWeight": undefined,
-              "lineHeight": 24,
+              "lineHeight": 28,
             },
             Object {
               "fontWeight": "600",

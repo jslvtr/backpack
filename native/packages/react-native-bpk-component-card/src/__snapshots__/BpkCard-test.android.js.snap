@@ -72,7 +72,7 @@ exports[`Android BpkCard should render correctly 1`] = `
             Object {
               "color": "rgb(82, 76, 97)",
               "fontFamily": "sans-serif-medium",
-              "fontSize": 14,
+              "fontSize": 16,
               "fontWeight": undefined,
               "lineHeight": 24,
             },
@@ -157,7 +157,7 @@ exports[`Android BpkCard should render correctly without padding 1`] = `
             Object {
               "color": "rgb(82, 76, 97)",
               "fontFamily": "sans-serif-medium",
-              "fontSize": 14,
+              "fontSize": 16,
               "fontWeight": undefined,
               "lineHeight": 24,
             },
