@@ -35,7 +35,7 @@ const emphasizePropType = (props, propName, componentName) => {
 
   const enabled = !!value;
 
-  if (enabled && props.textStyle === 'xxl') {
+  if (Platform.OS === 'ios' && (enabled && props.textStyle === 'xxl')) {
     return new Error(`Invalid prop \`${propName}\` of value \`${value}\` supplied to \`${componentName}\`. \`textStyle\` value of \`xxl\` cannot be emphasized.`); // eslint-disable-line max-len
   }
 
@@ -54,21 +54,20 @@ const stylePropType = (props, propName, componentName) => {
   return false;
 };
 
-const getAndroidFontFamily = fontWeight =>
-  (fontWeight === '500' ? tokens.fontFamilyEmphasize : tokens.fontFamily);
-
 const getStyleByTextStyle = (textStyle) => {
   const camelCasedStyle = textStyle[0].toUpperCase() + textStyle.slice(1);
-
   const color = tokens.colorGray700;
   const fontSize = tokens[`text${camelCasedStyle}FontSize`];
   const lineHeight = tokens[`text${camelCasedStyle}LineHeight`];
-  const fontWeight = Platform.OS === 'ios' ? tokens[`text${camelCasedStyle}FontWeight`] : undefined;
-  const androidFontFamily = getAndroidFontFamily(tokens[`text${camelCasedStyle}FontWeight`]);
-  const fontFamily = Platform.OS === 'android' ? androidFontFamily : tokens.fontFamily;
-
-  return { fontSize, lineHeight, fontWeight, color, fontFamily };
+  const fontFamily = tokens.fontFamily;
+  const fontWeight = tokens[`text${camelCasedStyle}FontWeight`];
+  return { fontSize, lineHeight, color, fontFamily, fontWeight };
 };
+
+const getEmphasizeProperties = () => ({
+  fontWeight: tokens.textEmphasizedFontWeight,
+  fontFamily: Platform.OS === 'android' ? tokens.fontFamilyEmphasize : tokens.fontFamily,
+});
 
 const styles = StyleSheet.create({
   xs: { ...getStyleByTextStyle('xs') },
@@ -77,13 +76,17 @@ const styles = StyleSheet.create({
   lg: { ...getStyleByTextStyle('lg') },
   xl: { ...getStyleByTextStyle('xl') },
   xxl: { ...getStyleByTextStyle('xxl') },
-  emphasize: { fontWeight: '600' },
 });
 
 const BpkText = (props) => {
   const { children, textStyle, style, emphasize, ...rest } = props;
-
-  return <Text style={[styles[textStyle], emphasize && styles.emphasize, style]} {...rest}>{children}</Text>;
+  const finalStyle = [styles[textStyle]];
+  // emphasize
+  if (emphasize) {
+    finalStyle.push(getEmphasizeProperties(props));
+  }
+  finalStyle.push(style);
+  return <Text style={finalStyle} {...rest}>{children}</Text>;
 };
 
 BpkText.propTypes = {
