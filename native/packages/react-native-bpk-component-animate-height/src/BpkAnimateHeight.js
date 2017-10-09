@@ -34,13 +34,20 @@ const {
 } = tokens;
 
 class BpkAnimateHeight extends React.Component {
+  constructor() {
+    super();
 
-  state = {
-    expanded: null,
-    expandedHeight: null,
-    collapsedHeight: 0,
-    height: new Animated.Value(1),
-    heightSet: false,
+    this.state = {
+      expanded: null,
+      expandedHeight: null,
+      collapsedHeight: 0,
+      height: new Animated.Value(1),
+      heightSet: false,
+    };
+
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+    this.setExpandedHeight = this.setExpandedHeight.bind(this);
+    this.resize = this.resize.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,7 +58,6 @@ class BpkAnimateHeight extends React.Component {
   }
 
   setExpandedHeight(event, expandedImmediately) {
-    // if (this.state.expandedHeightSet) return;
     const { height } = event.nativeEvent.layout;
     this.setState({
       // if the component has started expanded, we should now set the height of the container

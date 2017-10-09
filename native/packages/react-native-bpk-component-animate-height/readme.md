@@ -30,11 +30,17 @@ const styles = StyleSheet.create({
 });
 
 export default class App extends Component {
-  state = {
-    expanded: true,
+  constructor() {
+    super();
+
+    this.state = {
+      expanded: false,
+    };
+
+    this.onToggle = this.onToggle.bind(this);
   }
 
-  onToggle= () => {
+  onToggle() {
     this.setState({ expanded: !this.state.expanded });
   }
 
