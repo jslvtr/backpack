@@ -15,7 +15,6 @@ exports[`iOS BpkText should render correctly 1`] = `
         "fontWeight": "400",
         "lineHeight": 20,
       },
-      false,
       Object {},
     ]
   }
@@ -40,6 +39,7 @@ exports[`iOS BpkText should render correctly with \`emphasize\` prop 1`] = `
         "lineHeight": 20,
       },
       Object {
+        "fontFamily": "System",
         "fontWeight": "600",
       },
       Object {},
@@ -65,7 +65,6 @@ exports[`iOS BpkText should render correctly with textStyle="base" 1`] = `
         "fontWeight": "400",
         "lineHeight": 20,
       },
-      false,
       Object {},
     ]
   }
@@ -89,7 +88,6 @@ exports[`iOS BpkText should render correctly with textStyle="lg" 1`] = `
         "fontWeight": "400",
         "lineHeight": 22,
       },
-      false,
       Object {},
     ]
   }
@@ -113,7 +111,6 @@ exports[`iOS BpkText should render correctly with textStyle="sm" 1`] = `
         "fontWeight": "400",
         "lineHeight": 18,
       },
-      false,
       Object {},
     ]
   }
@@ -137,7 +134,6 @@ exports[`iOS BpkText should render correctly with textStyle="xl" 1`] = `
         "fontWeight": "400",
         "lineHeight": 24,
       },
-      false,
       Object {},
     ]
   }
@@ -161,7 +157,6 @@ exports[`iOS BpkText should render correctly with textStyle="xs" 1`] = `
         "fontWeight": "400",
         "lineHeight": 13,
       },
-      false,
       Object {},
     ]
   }
@@ -185,7 +180,6 @@ exports[`iOS BpkText should render correctly with textStyle="xxl" 1`] = `
         "fontWeight": "700",
         "lineHeight": 41,
       },
-      false,
       Object {},
     ]
   }
@@ -209,7 +203,6 @@ exports[`iOS BpkText should support overwriting styles 1`] = `
         "fontWeight": "400",
         "lineHeight": 20,
       },
-      false,
       Object {
         "color": "red",
       },

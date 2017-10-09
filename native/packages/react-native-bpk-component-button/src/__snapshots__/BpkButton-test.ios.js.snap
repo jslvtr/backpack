@@ -90,6 +90,7 @@ exports[`iOS BpkButton should render correctly 1`] = `
               "lineHeight": 18,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
@@ -209,6 +210,7 @@ exports[`iOS BpkButton should render correctly with type="destructive" 1`] = `
               "lineHeight": 18,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
@@ -323,6 +325,7 @@ exports[`iOS BpkButton should render correctly with type="featured" 1`] = `
               "lineHeight": 18,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
@@ -434,6 +437,7 @@ exports[`iOS BpkButton should render correctly with type="primary" 1`] = `
               "lineHeight": 18,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
@@ -553,6 +557,7 @@ exports[`iOS BpkButton should render correctly with type="secondary" 1`] = `
               "lineHeight": 18,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
@@ -672,6 +677,7 @@ exports[`iOS BpkButton should support having an icon as well as a title 1`] = `
               "lineHeight": 18,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
@@ -879,6 +885,7 @@ exports[`iOS BpkButton should support overwriting styles 1`] = `
               "lineHeight": 18,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
@@ -996,6 +1003,7 @@ exports[`iOS BpkButton should support the "disabled" property 1`] = `
               "lineHeight": 18,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
@@ -1124,6 +1132,7 @@ exports[`iOS BpkButton should support the "icon" and "large" property 1`] = `
               "lineHeight": 22,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
@@ -1349,6 +1358,7 @@ exports[`iOS BpkButton should support the "large" and secondary property 1`] = `
               "lineHeight": 22,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
@@ -1473,6 +1483,7 @@ exports[`iOS BpkButton should support the "large" property 1`] = `
               "lineHeight": 22,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
@@ -1590,6 +1601,7 @@ exports[`iOS BpkButton should support the "selected" property 1`] = `
               "lineHeight": 18,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
@@ -1704,6 +1716,7 @@ exports[`iOS BpkButtonThemed should render correctly 1`] = `
               "lineHeight": 18,
             },
             Object {
+              "fontFamily": "System",
               "fontWeight": "600",
             },
             Array [
