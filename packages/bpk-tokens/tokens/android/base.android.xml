@@ -118,13 +118,13 @@
   <property name="TEXT_SM_FONT_WEIGHT" category="font-weights">400</property>
   <property name="TEXT_SM_LINE_HEIGHT" category="line-heights">20dp</property>
   <property name="TEXT_BASE_FONT_SIZE" category="font-sizes">16sp</property>
-  <property name="TEXT_BASE_FONT_WEIGHT" category="font-weights">500</property>
+  <property name="TEXT_BASE_FONT_WEIGHT" category="font-weights">400</property>
   <property name="TEXT_BASE_LINE_HEIGHT" category="line-heights">24dp</property>
   <property name="TEXT_LG_FONT_SIZE" category="font-sizes">20sp</property>
   <property name="TEXT_LG_FONT_WEIGHT" category="font-weights">400</property>
   <property name="TEXT_LG_LINE_HEIGHT" category="line-heights">28dp</property>
   <property name="TEXT_XL_FONT_SIZE" category="font-sizes">24sp</property>
-  <property name="TEXT_XL_FONT_WEIGHT" category="font-weights">500</property>
+  <property name="TEXT_XL_FONT_WEIGHT" category="font-weights">400</property>
   <property name="TEXT_XL_LINE_HEIGHT" category="line-heights">32dp</property>
   <property name="TEXT_XXL_FONT_SIZE" category="font-sizes">34sp</property>
   <property name="TEXT_XXL_FONT_WEIGHT" category="font-weights">400</property>
